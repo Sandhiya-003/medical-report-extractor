@@ -1,0 +1,43 @@
+{
+  "id": "report_02_cmp_lab",
+  "doc_type": "lab",
+  "verified": true,
+  "fields": [
+    {
+      "test_name": "Glucose",
+      "canonical_test_name": "Glucose",
+      "value": 168.0,
+      "unit": "mg/dL",
+      "reference_range": "70-99 mg/dL",
+      "flag": "High"
+    },
+    {
+      "test_name": "Creatinine",
+      "canonical_test_name": "Creatinine",
+      "value": 1.8,
+      "unit": "mg/dL",
+      "reference_range": "0.6-1.2 mg/dL",
+      "flag": "High"
+    },
+    {
+      "test_name": "Sodium",
+      "canonical_test_name": "Sodium",
+      "value": 139.0,
+      "unit": "/uL",
+      "reference_range": "135-145 /uL",
+      "flag": "Normal"
+    },
+    {
+      "test_name": "Potassium",
+      "canonical_test_name": "Potassium",
+      "value": 4.8,
+      "unit": "/uL",
+      "reference_range": "3.5-5.0 /uL",
+      "flag": "Normal"
+    }
+  ],
+  "expected_flagged": [
+    "Glucose",
+    "Creatinine"
+  ]
+}

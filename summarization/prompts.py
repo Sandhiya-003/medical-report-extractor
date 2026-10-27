@@ -21,18 +21,28 @@ SYSTEM_PROMPT = (
 
 
 def _as_dict_list(normalized_data):
+    def _to_dict(item):
+        if dataclasses.is_dataclass(item):
+            return dataclasses.asdict(item)
+        if isinstance(item, dict):
+            return item
+        return dict(item)
+
     if isinstance(normalized_data, list):
-        return [dataclasses.asdict(item) for item in normalized_data]
-    return [dataclasses.asdict(normalized_data)]
+        return [_to_dict(item) for item in normalized_data]
+    return [_to_dict(normalized_data)]
 
 
 def _build_lab_prompt(rows: list) -> str:
     lines = []
     for row in rows:
-        flag = row["flag"] or "not flagged"
+        flag = row.get("flag") or "not flagged"
+        test_name = row.get("canonical_test_name") or row.get("test_name") or "Lab Test"
+        value = row.get("value", "")
+        unit = row.get("unit") or ""
+        ref_range = row.get("reference_range") or "not provided"
         lines.append(
-            f"- {row['canonical_test_name']}: {row['value']} {row['unit'] or ''} "
-            f"(reference range: {row['reference_range'] or 'not provided'}, flag: {flag})"
+            f"- {test_name}: {value} {unit} (reference range: {ref_range}, flag: {flag})".strip()
         )
     results_block = "\n".join(lines)
 
@@ -50,34 +60,36 @@ def _build_lab_prompt(rows: list) -> str:
 def _build_prescription_prompt(rows: list) -> str:
     lines = []
     for row in rows:
-        parts = [row["canonical_drug_name"], row["dosage"] or "dosage not specified"]
-        if row["frequency"]:
+        drug_name = row.get("canonical_drug_name") or row.get("drug_name") or "Medication"
+        parts = [drug_name, row.get("dosage") or "dosage not specified"]
+        if row.get("frequency"):
             parts.append(row["frequency"])
-        if row["duration"]:
+        if row.get("duration"):
             parts.append(row["duration"])
         lines.append(f"- {' | '.join(p for p in parts if p)}")
     items_block = "\n".join(lines)
 
     return (
-        "Here are the medications from a patient's prescription:\n\n"
+        "Here are the medications extracted from a patient's prescription (which may include handwritten doctor notes):\n\n"
         f"{items_block}\n\n"
         "Please respond with:\n"
-        "1. Summary: a 2-3 sentence plain-English summary of this prescription overall.\n"
-        "2. Medications Explained: for each medication, a simple explanation of what "
-        "it is generally used for and how to take it, based on the dosage/frequency/"
-        "duration given above.\n"
-        "3. Flagged Concerns: note anything about the instructions that seems unclear "
-        "or worth double-checking with a pharmacist/doctor (e.g. missing duration). "
-        "If nothing stands out, say so.\n"
+        "1. Summary: A 2-3 sentence plain-English summary of what this prescription is for overall and the general health conditions being treated.\n"
+        "2. Medications Explained: For each medication listed above, provide a clear, patient-friendly breakdown:\n"
+        "   - What it is generally used for (e.g. antibiotic for bacterial infection, stomach acid protection, pain/fever relief).\n"
+        "   - Clear instructions on how and when to take it based on the prescribed dosage, frequency, and timing (clarifying shorthand like 'twice daily after meals').\n"
+        "3. Flagged Concerns & Pharmacist Tips: Note any missing durations, precautions, or key questions to double-check with the pharmacist (e.g. 'complete the full antibiotic course', 'take before food'). If everything looks clear, reassure the patient.\n"
     )
 
 
 def _build_discharge_prompt(info: dict) -> str:
+    diag = info.get("canonical_diagnosis") or info.get("diagnosis") or "not documented"
+    proc = info.get("procedures") or "not documented"
+    follow = info.get("follow_up") or "not documented"
     return (
         "Here is a patient's discharge summary:\n\n"
-        f"- Diagnosis: {info['canonical_diagnosis'] or 'not documented'}\n"
-        f"- Procedures performed: {info['procedures'] or 'not documented'}\n"
-        f"- Follow-up instructions: {info['follow_up'] or 'not documented'}\n\n"
+        f"- Diagnosis: {diag}\n"
+        f"- Procedures performed: {proc}\n"
+        f"- Follow-up instructions: {follow}\n\n"
         "Please respond with:\n"
         "1. Summary: a 2-3 sentence plain-English summary of this hospital stay and "
         "why the patient was there.\n"

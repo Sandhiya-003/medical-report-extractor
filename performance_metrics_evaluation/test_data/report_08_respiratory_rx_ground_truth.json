@@ -1,0 +1,33 @@
+{
+  "id": "report_08_respiratory_rx",
+  "doc_type": "prescription",
+  "verified": true,
+  "fields": [
+    {
+      "drug_name": "Azithromycin",
+      "canonical_drug_name": "Azithromycin",
+      "dosage": "500mg",
+      "frequency": "once daily",
+      "duration": "for 5 days"
+    },
+    {
+      "drug_name": "Montelukast",
+      "canonical_drug_name": "Montelukast",
+      "dosage": "10mg",
+      "frequency": "once daily",
+      "duration": "for 14 days"
+    },
+    {
+      "drug_name": "Cetirizine",
+      "canonical_drug_name": "Cetirizine",
+      "dosage": "10mg",
+      "frequency": "once daily",
+      "duration": "for 10 days"
+    }
+  ],
+  "expected_drugs": [
+    "Azithromycin",
+    "Montelukast",
+    "Cetirizine"
+  ]
+}

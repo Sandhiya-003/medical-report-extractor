@@ -1,0 +1,90 @@
+[
+  {
+    "id": "report_01_cbc_lab",
+    "filename": "fake_report_01_cbc_lab.pdf",
+    "doc_type": "lab",
+    "title": "METRO HEALTH PATHOLOGY LABS - Complete Blood Count (CBC)",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_report_01_cbc_lab.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_01_cbc_lab_ground_truth.json"
+  },
+  {
+    "id": "report_02_cmp_lab",
+    "filename": "fake_report_02_cmp_lab.pdf",
+    "doc_type": "lab",
+    "title": "CENTRAL DIAGNOSTICS & CLINICAL LABORATORY - Metabolic Panel",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_report_02_cmp_lab.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_02_cmp_lab_ground_truth.json"
+  },
+  {
+    "id": "report_03_lipid_lab",
+    "filename": "fake_report_03_lipid_lab.pdf",
+    "doc_type": "lab",
+    "title": "CARDIOVASCULAR HEALTH LAB - Lipid Profile & Blood Markers",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_report_03_lipid_lab.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_03_lipid_lab_ground_truth.json"
+  },
+  {
+    "id": "report_04_renal_lab",
+    "filename": "fake_report_04_renal_lab.pdf",
+    "doc_type": "lab",
+    "title": "ST. JUDE MEDICAL CENTER - Renal Function & Electrolyte Panel",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_report_04_renal_lab.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_04_renal_lab_ground_truth.json"
+  },
+  {
+    "id": "report_05_hypertension_rx",
+    "filename": "fake_rx_05_hypertension.pdf",
+    "doc_type": "prescription",
+    "title": "DR. ROBERT HASTINGS, MD - CARDIOLOGY CLINIC - PRESCRIPTION",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_rx_05_hypertension.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_05_hypertension_rx_ground_truth.json"
+  },
+  {
+    "id": "report_06_diabetes_rx",
+    "filename": "fake_rx_06_diabetes_cholesterol.pdf",
+    "doc_type": "prescription",
+    "title": "APEX DIABETES & ENDOCRINOLOGY CARE - PRESCRIPTION",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_rx_06_diabetes_cholesterol.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_06_diabetes_rx_ground_truth.json"
+  },
+  {
+    "id": "report_07_postop_rx",
+    "filename": "fake_rx_07_postop_infection.pdf",
+    "doc_type": "prescription",
+    "title": "WESTSIDE SURGICAL ASSOCIATES - DISCHARGE PRESCRIPTION",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_rx_07_postop_infection.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_07_postop_rx_ground_truth.json"
+  },
+  {
+    "id": "report_08_respiratory_rx",
+    "filename": "fake_rx_08_respiratory_asthma.pdf",
+    "doc_type": "prescription",
+    "title": "CEDAR PARK PULMONARY CLINIC - OUTPATIENT PRESCRIPTION",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_rx_08_respiratory_asthma.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_08_respiratory_rx_ground_truth.json"
+  },
+  {
+    "id": "report_09_cardiac_discharge",
+    "filename": "fake_discharge_09_cardiac_acs.pdf",
+    "doc_type": "discharge",
+    "title": "MEMORIAL HOSPITAL - DEPARTMENT OF CARDIOLOGY - DISCHARGE SUMMARY",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_discharge_09_cardiac_acs.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_09_cardiac_discharge_ground_truth.json"
+  },
+  {
+    "id": "report_10_appendectomy_discharge",
+    "filename": "fake_discharge_10_appendectomy.pdf",
+    "doc_type": "discharge",
+    "title": "VALLEY GENERAL HOSPITAL - GENERAL SURGERY - DISCHARGE SUMMARY",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_discharge_10_appendectomy.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_10_appendectomy_discharge_ground_truth.json"
+  },
+  {
+    "id": "report_11_pneumonia_discharge",
+    "filename": "fake_discharge_11_pneumonia.pdf",
+    "doc_type": "discharge",
+    "title": "ST. LUKE'S REGIONAL MEDICAL CENTER - DISCHARGE SUMMARY",
+    "pdf_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\fake_discharge_11_pneumonia.pdf",
+    "gt_path": "C:\\Users\\sandh\\OneDrive\\Desktop\\Medreport_summarizer\\medical-report-extractor\\performance_metrics_evaluation\\test_data\\report_11_pneumonia_discharge_ground_truth.json"
+  }
+]

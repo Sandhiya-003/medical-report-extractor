@@ -36,8 +36,8 @@ flowchart LR
     E2 --> F
     E3 --> F
     F -->|units, drug names, test names, diagnoses| G[Normalized Schema<br/>LabResult / PrescriptionItem / DischargeInfo]
-    G --> H[Stage 5: Summarization<br/>Groq LLM - openai/gpt-oss-20b]
-    G --> I[Streamlit UI]
+    G --> H[Stage 5: Summarization<br/>Google Gemini LLM - gemini-3.5-flash-lite]
+    G --> I[Streamlit UI / React MedLens UI]
     H --> I
     I --> J[Raw Text / Extracted Fields /<br/>Plain-Language Summary / Flagged Items]
 ```
@@ -46,22 +46,25 @@ flowchart LR
 
 | Stage | Folder | What it does |
 |---|---|---|
-| 2. Ingestion | `ingestion/` | PDF text extraction (PyMuPDF), OCR (Tesseract), image preprocessing (OpenCV) |
-| 3. Classification + Extraction | `classification/`, `extraction/` | Doc-type detection, regex + NER field extraction |
+| 2. Ingestion | `ingestion/` | PDF text extraction (PyMuPDF), OCR (Tesseract + Gemini Vision OCR), image preprocessing (OpenCV) |
+| 3. Classification + Extraction | `classification/`, `extraction/` | Doc-type detection, regex + scispaCy NER + LLM field extraction |
 | 4. Normalization | `normalization/` | Unit/drug/test-name canonicalization, dataclass schemas |
-| 5. Summarization + UI | `summarization/`, `app/` | LLM-generated plain-language summary, Streamlit app |
-| 6. Evaluation | `eval/` | Ground-truth annotation + precision/recall/F1 scoring |
+| 5. Summarization + UI | `summarization/`, `app/`, `api/`, `frontend/` | LLM-generated plain-language summary, FastAPI backend, React dashboard, Streamlit app |
+| 6. Performance Evaluation | `eval/`, `performance_metrics_evaluation/` | Ground-truth annotation, field-level precision/recall/F1, automated 11-report benchmarking suite |
 
 ## Tech stack
 
 - **PDF parsing:** PyMuPDF (`fitz`)
-- **OCR:** Tesseract via `pytesseract`
-- **Image preprocessing:** OpenCV (`opencv-python`)
+- **OCR:** Tesseract via `pytesseract` & Google Gemini Vision Multimodal OCR (for handwritten doctor prescriptions)
+- **Image preprocessing:** OpenCV (`opencv-python`) & Pillow
 - **NER:** scispaCy (`en_core_sci_sm` biomedical model)
-- **LLM summarization:** Groq API (`openai/gpt-oss-20b`)
-- **UI:** Streamlit
+- **LLM summarization & vision:** Google Gemini API (`gemini-3.5-flash-lite`, `gemini-3.5-flash`, `google-genai`)
+- **Backend API:** FastAPI & SQLite (`api/`)
+- **Frontend Dashboard:** Modern React 19 + Tailwind CSS + Lucide Icons + Vite (`frontend/`)
+- **Classic UI:** Streamlit (`app/`)
+- **Evaluation & Benchmarks:** Automated 11-report performance evaluation suite (`performance_metrics_evaluation/`)
 - **Date parsing:** `python-dateutil`
-- **Language:** Python 3.11
+- **Language:** Python 3.11 / 3.12
 
 ## Setup
 
@@ -97,10 +100,10 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\path\to\tesseract.exe"
 
 ### 4. Set up your `.env` file
 
-Create a `.env` file in the project root with your [Groq API key](https://console.groq.com/):
+Create a `.env` file in the project root with your [Google Gemini API key](https://aistudio.google.com/):
 
 ```
-GROQ_API_KEY=your_key_here
+GEMINI_API_KEY=your_gemini_key_here
 ```
 
 ### 5. Verify everything's working
@@ -109,19 +112,32 @@ GROQ_API_KEY=your_key_here
 python test_setup.py
 ```
 
-This checks all imports, the Tesseract binary, the Groq API key, and the scispaCy
+This checks all imports, the Tesseract binary, the Gemini API key, and the scispaCy
 model, and reports `[OK]`/`[FAIL]` for each.
 
-## Running the app
+## Running the application
+
+### Option 1: MedLens AI Modern Web App (Recommended)
+
+1. **Start the FastAPI backend server** (port 8000):
+   ```bash
+   python -m uvicorn api.server:app --port 8000 --reload
+   ```
+
+2. **Start the React + Vite frontend** (port 5173):
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+   Open `http://localhost:5173` in your browser.
+
+### Option 2: Classic Streamlit App
 
 ```bash
 streamlit run app/streamlit_app.py
 ```
 
-Open the URL Streamlit prints (usually `http://localhost:8501`), upload a PDF or
-image report (sample files are in `data/samples/`), and view the four result tabs:
-**Raw Text**, **Extracted Fields**, **Plain-Language Summary**, and
-**Flagged/Abnormal Items**.
+Open `http://localhost:8501` to view the original Streamlit interface.
 
 You can also run each pipeline stage's own test script independently:
 
@@ -136,7 +152,53 @@ python normalization/test_normalization.py
 > _Add 1-2 screenshots here of the Streamlit app in action (e.g. the Extracted
 > Fields table and the Plain-Language Summary tab) before sharing this project._
 
-## Evaluation methodology
+## Automated Performance Metrics Evaluation (11 Test Cases)
+
+An automated performance metrics evaluation test suite is located in the [`performance_metrics_evaluation/`](performance_metrics_evaluation/) directory. It tests the end-to-end pipeline across **11 synthetic medical reports and doctor prescriptions** with verified ground truth annotations.
+
+### Evaluated Test Cases
+- **4 Laboratory Reports:** Complete Blood Count (CBC) with differential, Comprehensive Metabolic Panel (CMP), Lipid Profile & Blood Markers, Renal Function & Electrolyte Panel.
+- **4 Doctor Prescriptions:** Hypertension (Amlodipine, Losartan, Atorvastatin), Type 2 Diabetes (Metformin, Pantoprazole, Rosuvastatin), Post-Surgical (Amoxicillin, Acetaminophen, Ibuprofen), Respiratory/Asthma (Azithromycin, Montelukast, Cetirizine).
+- **3 Hospital Discharge Summaries:** Acute Coronary Syndrome (NSTEMI / Stent placement), Laparoscopic Appendectomy (Acute appendicitis / peritonitis), Community-Acquired Bacterial Pneumonia.
+
+### Running the Performance Test Suite
+
+```bash
+python performance_metrics_evaluation\run_performance_tests.py
+```
+
+To regenerate the 11 synthetic clinical test PDFs and ground-truth JSON files:
+
+```bash
+python performance_metrics_evaluation\generators\generate_fake_reports.py
+```
+
+### Benchmark Results Summary
+
+| Metric Dimension | Key Performance Indicator (KPI) | Measured Score | Status / Target |
+| :--- | :--- | :---: | :---: |
+| **Classification** | Overall Accuracy | **100.0%** (11/11) | ✅ Passed (Target: >= 95%) |
+| **Classification** | Macro-Averaged F1-Score | **1.0000** | ✅ Passed |
+| **Extraction** | Field-Level Precision | **0.9660** (142 TP / 5 FP) | ✅ Passed (Target: >= 0.90) |
+| **Extraction** | Field-Level Recall | **1.0000** (0 FN) | ✅ Zero Missed Fields |
+| **Extraction** | Field-Level F1-Score | **0.9827** | ✅ Production Quality |
+| **Extraction** | Exact Field Match Rate | **100.0%** | ✅ Exact Verification |
+| **Clinical Safety** | Abnormal Flag Sensitivity (Recall) | **100.0%** (10/10) | ✅ Zero Missed Critical Alerts |
+| **Clinical Safety** | Abnormal Flag Specificity | **100.0%** (7/7) | ✅ Zero False Alarms |
+| **Summarization** | Plain-Language Success Rate | **100.0%** | ✅ Error-Free |
+| **Summarization** | Clinical Concept Retention Rate | **100.0%** | ✅ Zero Concept Loss |
+| **Speed & Latency** | Mean Pipeline Latency | **11.6 seconds** | Real-time SLA |
+| **System Footprint** | Peak Memory RAM | **69.37 MB** | Resource-Efficient |
+
+Detailed outputs are generated in `performance_metrics_evaluation/results/`:
+- [`performance_metrics_report.md`](performance_metrics_evaluation/results/performance_metrics_report.md) — Comprehensive Markdown evaluation report
+- [`performance_metrics_report.json`](performance_metrics_evaluation/results/performance_metrics_report.json) — Full machine-readable test telemetry
+- [`summary_table.csv`](performance_metrics_evaluation/results/summary_table.csv) — Per-document performance table
+- [`confusion_matrix.json`](performance_metrics_evaluation/results/confusion_matrix.json) — Document classification confusion matrix
+
+---
+
+## Evaluation methodology (Sample-by-sample Ground Truth)
 
 Evaluation compares the pipeline's extracted+normalized output against
 hand-verified ground truth, scored as field-level precision/recall/F1.

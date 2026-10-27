@@ -1,0 +1,33 @@
+{
+  "id": "report_07_postop_rx",
+  "doc_type": "prescription",
+  "verified": true,
+  "fields": [
+    {
+      "drug_name": "Amoxicillin",
+      "canonical_drug_name": "Amoxicillin",
+      "dosage": "500mg",
+      "frequency": "three times daily",
+      "duration": "for 7 days"
+    },
+    {
+      "drug_name": "Acetaminophen",
+      "canonical_drug_name": "Acetaminophen",
+      "dosage": "650mg",
+      "frequency": "three times daily",
+      "duration": "for 5 days"
+    },
+    {
+      "drug_name": "Ibuprofen",
+      "canonical_drug_name": "Ibuprofen",
+      "dosage": "400mg",
+      "frequency": "twice daily",
+      "duration": "for 5 days"
+    }
+  ],
+  "expected_drugs": [
+    "Amoxicillin",
+    "Acetaminophen",
+    "Ibuprofen"
+  ]
+}

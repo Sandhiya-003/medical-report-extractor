@@ -1,0 +1,33 @@
+{
+  "id": "report_05_hypertension_rx",
+  "doc_type": "prescription",
+  "verified": true,
+  "fields": [
+    {
+      "drug_name": "Amlodipine",
+      "canonical_drug_name": "Amlodipine",
+      "dosage": "5mg",
+      "frequency": "once daily",
+      "duration": "for 30 days"
+    },
+    {
+      "drug_name": "Losartan",
+      "canonical_drug_name": "Losartan",
+      "dosage": "50mg",
+      "frequency": "once daily",
+      "duration": "for 30 days"
+    },
+    {
+      "drug_name": "Atorvastatin",
+      "canonical_drug_name": "Atorvastatin",
+      "dosage": "20mg",
+      "frequency": "once daily",
+      "duration": "for 30 days"
+    }
+  ],
+  "expected_drugs": [
+    "Amlodipine",
+    "Losartan",
+    "Atorvastatin"
+  ]
+}

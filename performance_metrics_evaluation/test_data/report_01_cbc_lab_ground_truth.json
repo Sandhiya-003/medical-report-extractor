@@ -1,0 +1,52 @@
+{
+  "id": "report_01_cbc_lab",
+  "doc_type": "lab",
+  "verified": true,
+  "fields": [
+    {
+      "test_name": "Hemoglobin",
+      "canonical_test_name": "Hemoglobin",
+      "value": 11.2,
+      "unit": "g/dL",
+      "reference_range": "13.5-17.5 g/dL",
+      "flag": "Low"
+    },
+    {
+      "test_name": "White Blood Cell Count",
+      "canonical_test_name": "White Blood Cell Count",
+      "value": 12.8,
+      "unit": "/uL",
+      "reference_range": "4.5-11.0 /uL",
+      "flag": "High"
+    },
+    {
+      "test_name": "Platelet Count",
+      "canonical_test_name": "Platelet Count",
+      "value": 245.0,
+      "unit": "/uL",
+      "reference_range": "150-450 /uL",
+      "flag": "Normal"
+    },
+    {
+      "test_name": "Red Blood Cell Count",
+      "canonical_test_name": "Red Blood Cell Count",
+      "value": 4.1,
+      "unit": "/uL",
+      "reference_range": "4.30-5.90 /uL",
+      "flag": "Low"
+    },
+    {
+      "test_name": "Glucose",
+      "canonical_test_name": "Glucose",
+      "value": 98.0,
+      "unit": "mg/dL",
+      "reference_range": "70-99 mg/dL",
+      "flag": "Normal"
+    }
+  ],
+  "expected_flagged": [
+    "Hemoglobin",
+    "White Blood Cell Count",
+    "Red Blood Cell Count"
+  ]
+}

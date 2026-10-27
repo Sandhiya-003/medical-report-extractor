@@ -1,0 +1,12 @@
+ID,Filename,Doc Type Expected,Doc Type Predicted,Classification Pass,Precision,Recall,F1,Exact Match Rate,Latency (ms),Summary Words
+report_01_cbc_lab,fake_report_01_cbc_lab.pdf,lab,lab,True,1.0,1.0,1.0,1.0,4884.91,175
+report_02_cmp_lab,fake_report_02_cmp_lab.pdf,lab,lab,True,1.0,1.0,1.0,1.0,2937.42,131
+report_03_lipid_lab,fake_report_03_lipid_lab.pdf,lab,lab,True,1.0,1.0,1.0,1.0,8390.2,91
+report_04_renal_lab,fake_report_04_renal_lab.pdf,lab,lab,True,0.8,1.0,0.8889,1.0,3673.71,187
+report_05_hypertension_rx,fake_rx_05_hypertension.pdf,prescription,prescription,True,1.0,1.0,1.0,1.0,18545.21,227
+report_06_diabetes_rx,fake_rx_06_diabetes_cholesterol.pdf,prescription,prescription,True,1.0,1.0,1.0,1.0,10163.85,228
+report_07_postop_rx,fake_rx_07_postop_infection.pdf,prescription,prescription,True,1.0,1.0,1.0,1.0,19644.11,231
+report_08_respiratory_rx,fake_rx_08_respiratory_asthma.pdf,prescription,prescription,True,1.0,1.0,1.0,1.0,20182.05,251
+report_09_cardiac_discharge,fake_discharge_09_cardiac_acs.pdf,discharge,discharge,True,1.0,1.0,1.0,1.0,13608.74,168
+report_10_appendectomy_discharge,fake_discharge_10_appendectomy.pdf,discharge,discharge,True,1.0,1.0,1.0,1.0,9112.56,161
+report_11_pneumonia_discharge,fake_discharge_11_pneumonia.pdf,discharge,discharge,True,1.0,1.0,1.0,1.0,16500.44,154

@@ -1,0 +1,33 @@
+{
+  "id": "report_06_diabetes_rx",
+  "doc_type": "prescription",
+  "verified": true,
+  "fields": [
+    {
+      "drug_name": "Metformin",
+      "canonical_drug_name": "Metformin",
+      "dosage": "500mg",
+      "frequency": "twice daily",
+      "duration": "for 60 days"
+    },
+    {
+      "drug_name": "Pantoprazole",
+      "canonical_drug_name": "Pantoprazole",
+      "dosage": "40mg",
+      "frequency": "once daily",
+      "duration": "for 30 days"
+    },
+    {
+      "drug_name": "Rosuvastatin",
+      "canonical_drug_name": "Rosuvastatin",
+      "dosage": "10mg",
+      "frequency": "once daily",
+      "duration": "for 60 days"
+    }
+  ],
+  "expected_drugs": [
+    "Metformin",
+    "Pantoprazole",
+    "Rosuvastatin"
+  ]
+}

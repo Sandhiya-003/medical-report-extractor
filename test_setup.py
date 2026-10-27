@@ -41,10 +41,16 @@ def check_imports():
         print(f"  [FAIL] streamlit: {e}")
 
     try:
+        import google.genai
+        print("  [OK] google-genai")
+    except ImportError as e:
+        print(f"  [FAIL] google-genai: {e}")
+
+    try:
         import groq
         print("  [OK] groq")
     except ImportError as e:
-        print(f"  [FAIL] groq: {e}")
+        print(f"  [WARN] groq: {e} (Optional, using Gemini)")
 
 
 def check_tesseract():
@@ -83,23 +89,38 @@ def check_tesseract():
         print("  -> Set pytesseract.pytesseract.tesseract_cmd to your install path (as a raw string)")
 
 
-def check_groq_key():
-    print("\nChecking Groq API key...")
-    key = os.getenv("GROQ_API_KEY")
-    if not key or key == "your_key_here":
-        print("  [FAIL] GROQ_API_KEY not set in .env")
-        return
-    try:
-        from groq import Groq
-        client = Groq(api_key=key)
-        response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
-            messages=[{"role": "user", "content": "Say 'test ok' and nothing else."}],
-            max_tokens=10,
-        )
-        print(f"  [OK] Groq responded: {response.choices[0].message.content.strip()}")
-    except Exception as e:
-        print(f"  [FAIL] Groq call failed: {e}")
+def check_llm_key():
+    print("\nChecking LLM API key (Gemini / Groq)...")
+    gemini_key = os.getenv("GEMINI_API_KEY")
+    if gemini_key and gemini_key != "your_key_here":
+        try:
+            from google import genai
+            client = genai.Client(api_key=gemini_key)
+            response = client.models.generate_content(
+                model="gemini-3.5-flash-lite",
+                contents="Say 'test ok' and nothing else.",
+            )
+            print(f"  [OK] Gemini responded: {response.text.strip()}")
+            return
+        except Exception as e:
+            print(f"  [FAIL] Gemini call failed: {e}")
+
+    groq_key = os.getenv("GROQ_API_KEY")
+    if groq_key and groq_key != "your_key_here":
+        try:
+            from groq import Groq
+            client = Groq(api_key=groq_key)
+            response = client.chat.completions.create(
+                model="openai/gpt-oss-20b",
+                messages=[{"role": "user", "content": "Say 'test ok' and nothing else."}],
+                max_tokens=10,
+            )
+            print(f"  [OK] Groq responded: {response.choices[0].message.content.strip()}")
+            return
+        except Exception as e:
+            print(f"  [FAIL] Groq call failed: {e}")
+
+    print("  [FAIL] Neither GEMINI_API_KEY nor GROQ_API_KEY is properly set in .env")
 
 
 def check_scispacy_model():
@@ -116,6 +137,6 @@ def check_scispacy_model():
 if __name__ == "__main__":
     check_imports()
     check_tesseract()
-    check_groq_key()
+    check_llm_key()
     check_scispacy_model()
     print("\nDone. Fix any [FAIL] lines above before moving to Stage 2.")

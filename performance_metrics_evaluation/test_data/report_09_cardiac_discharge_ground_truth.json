@@ -1,0 +1,15 @@
+{
+  "id": "report_09_cardiac_discharge",
+  "doc_type": "discharge",
+  "verified": true,
+  "fields": {
+    "diagnosis": "Non-ST-Elevation Myocardial Infarction and coronary artery disease.",
+    "canonical_diagnosis": "Non-ST-Elevation Myocardial Infarction and coronary artery disease.",
+    "procedures": "Emergency coronary angiography and successful drug-eluting stent placement to proximal LAD.",
+    "follow_up": "Follow-up visit with Dr. Vance at cardiology clinic in 2 weeks. Strict adherence to dual antiplatelet therapy."
+  },
+  "key_diagnosis_terms": [
+    "myocardial infarction",
+    "coronary artery disease"
+  ]
+}

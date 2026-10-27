@@ -1,0 +1,15 @@
+{
+  "id": "report_10_appendectomy_discharge",
+  "doc_type": "discharge",
+  "verified": true,
+  "fields": {
+    "diagnosis": "Acute phlegmonous appendicitis with localized peritonitis.",
+    "canonical_diagnosis": "Acute phlegmonous appendicitis with localized peritonitis.",
+    "procedures": "Emergency laparoscopic appendectomy and peritoneal cavity irrigation.",
+    "follow_up": "Surgical outpatient clinic visit in 10 days for wound check and evaluation. Avoid heavy lifting for 4 weeks."
+  },
+  "key_diagnosis_terms": [
+    "appendicitis",
+    "peritonitis"
+  ]
+}

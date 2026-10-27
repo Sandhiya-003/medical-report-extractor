@@ -1,0 +1,17 @@
+{
+  "lab": {
+    "lab": 4,
+    "prescription": 0,
+    "discharge": 0
+  },
+  "prescription": {
+    "lab": 0,
+    "prescription": 4,
+    "discharge": 0
+  },
+  "discharge": {
+    "lab": 0,
+    "prescription": 0,
+    "discharge": 3
+  }
+}

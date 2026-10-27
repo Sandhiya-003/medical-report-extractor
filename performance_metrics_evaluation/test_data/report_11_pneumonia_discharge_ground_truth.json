@@ -1,0 +1,15 @@
+{
+  "id": "report_11_pneumonia_discharge",
+  "doc_type": "discharge",
+  "verified": true,
+  "fields": {
+    "diagnosis": "Community-acquired bacterial pneumonia and mild acute hypoxemia.",
+    "canonical_diagnosis": "Community-acquired bacterial pneumonia and mild acute hypoxemia.",
+    "procedures": "Serial chest radiography (X-ray), sputum microbiology culture, and intravenous antibiotic therapy.",
+    "follow_up": "Complete the prescribed oral antibiotic course. Repeat chest X-ray in 4 weeks and visit primary care physician in 2 weeks."
+  },
+  "key_diagnosis_terms": [
+    "pneumonia",
+    "hypoxemia"
+  ]
+}

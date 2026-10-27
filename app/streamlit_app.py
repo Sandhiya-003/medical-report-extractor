@@ -238,7 +238,9 @@ def _status_class(flag: str) -> str:
 
 def get_raw_text_from_pdf(pdf_path: str) -> str:
     if is_text_based_pdf(pdf_path):
-        return extract_text_from_pdf(pdf_path)
+        text = extract_text_from_pdf(pdf_path)
+        if text and text.strip():
+            return text
     images = extract_images_from_pdf(pdf_path)
     images = [preprocess_image(img) for img in images]
     return ocr_pdf_pages(images)
@@ -248,6 +250,7 @@ def get_raw_text_from_image(file_bytes: bytes) -> str:
     image = Image.open(io.BytesIO(file_bytes))
     image = preprocess_image(image)
     return ocr_image(image)
+
 
 
 def to_jsonable(normalized):

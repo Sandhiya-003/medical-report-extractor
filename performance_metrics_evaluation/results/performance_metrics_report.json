@@ -1,0 +1,314 @@
+{
+  "metadata": {
+    "evaluation_timestamp": "2026-10-27T10:08:18.522012",
+    "total_documents_tested": 11,
+    "categories_tested": [
+      "lab",
+      "prescription",
+      "discharge"
+    ],
+    "dataset": "11 Synthetic Clinical Test Cases (Verified Ground Truth)",
+    "pipeline_components": [
+      "ingestion.pdf_parser (PyMuPDF)",
+      "classification.doc_type_classifier",
+      "extraction (lab, prescription, discharge)",
+      "normalization.normalize (term_mapper)",
+      "summarization.llm_summarizer (Google Gemini)"
+    ]
+  },
+  "summary_kpis": {
+    "classification_accuracy": 1.0,
+    "macro_f1_classification": 1.0,
+    "extraction_field_precision": 0.966,
+    "extraction_field_recall": 1.0,
+    "extraction_field_f1": 0.9827,
+    "extraction_exact_match_rate": 1.0,
+    "clinical_flag_sensitivity": 1.0,
+    "clinical_flag_specificity": 1.0,
+    "clinical_flag_f1": 1.0,
+    "summary_success_rate": 1.0,
+    "clinical_term_retention_rate": 1.0,
+    "average_latency_per_doc_sec": 11.6,
+    "throughput_docs_per_min": 5.17,
+    "peak_memory_mb": 69.37
+  },
+  "classification_performance": {
+    "accuracy": 1.0,
+    "correct": 11,
+    "total": 11,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "per_class": {
+      "lab": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "prescription": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "discharge": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      }
+    },
+    "confusion_matrix": {
+      "lab": {
+        "lab": 4,
+        "prescription": 0,
+        "discharge": 0
+      },
+      "prescription": {
+        "lab": 0,
+        "prescription": 4,
+        "discharge": 0
+      },
+      "discharge": {
+        "lab": 0,
+        "prescription": 0,
+        "discharge": 3
+      }
+    }
+  },
+  "extraction_performance": {
+    "global_field_precision": 0.966,
+    "global_field_recall": 1.0,
+    "global_field_f1": 0.9827,
+    "exact_match_rate": 1.0,
+    "total_tp": 142,
+    "total_fp": 5,
+    "total_fn": 0
+  },
+  "clinical_abnormal_detection": {
+    "sensitivity": 1.0,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "f1": 1.0,
+    "tp": 10,
+    "fp": 0,
+    "fn": 0,
+    "tn": 7
+  },
+  "latency_benchmarks": {
+    "ingestion": {
+      "mean_ms": 26.93,
+      "median_ms": 24.43,
+      "p95_ms": 109.84,
+      "min_ms": 4.56,
+      "max_ms": 109.84,
+      "stddev_ms": 28.99
+    },
+    "classification": {
+      "mean_ms": 3.3,
+      "median_ms": 2.42,
+      "p95_ms": 7.9,
+      "min_ms": 0.77,
+      "max_ms": 7.9,
+      "stddev_ms": 2.42
+    },
+    "extraction": {
+      "mean_ms": 2808.87,
+      "median_ms": 33.24,
+      "p95_ms": 11168.41,
+      "min_ms": 0.16,
+      "max_ms": 11168.41,
+      "stddev_ms": 4003.38
+    },
+    "normalization": {
+      "mean_ms": 0.93,
+      "median_ms": 0.17,
+      "p95_ms": 8.12,
+      "min_ms": 0.07,
+      "max_ms": 8.12,
+      "stddev_ms": 2.28
+    },
+    "summarization": {
+      "mean_ms": 8763.9,
+      "median_ms": 8384.63,
+      "p95_ms": 16425.71,
+      "min_ms": 2929.38,
+      "max_ms": 16425.71,
+      "stddev_ms": 4260.3
+    },
+    "total_end_to_end": {
+      "mean_ms": 11603.93,
+      "median_ms": 10163.85,
+      "p95_ms": 20182.05,
+      "min_ms": 2937.42,
+      "max_ms": 20182.05,
+      "stddev_ms": 6150.8
+    },
+    "throughput_docs_per_minute": 5.17
+  },
+  "summary_quality": {
+    "success_rate": 1.0,
+    "valid_summaries": 11,
+    "total_documents": 11,
+    "avg_word_count": 182.2,
+    "clinical_term_retention_rate": 1.0,
+    "error_marker_count": 0
+  },
+  "resource_overhead": {
+    "suite_duration_sec": 127.74,
+    "peak_memory_mb": 69.37,
+    "current_memory_mb": 56.75
+  },
+  "individual_document_results": [
+    {
+      "id": "report_01_cbc_lab",
+      "filename": "fake_report_01_cbc_lab.pdf",
+      "doc_type_expected": "lab",
+      "doc_type_predicted": "lab",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 4884.91,
+      "summary_word_count": 175
+    },
+    {
+      "id": "report_02_cmp_lab",
+      "filename": "fake_report_02_cmp_lab.pdf",
+      "doc_type_expected": "lab",
+      "doc_type_predicted": "lab",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 2937.42,
+      "summary_word_count": 131
+    },
+    {
+      "id": "report_03_lipid_lab",
+      "filename": "fake_report_03_lipid_lab.pdf",
+      "doc_type_expected": "lab",
+      "doc_type_predicted": "lab",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 8390.2,
+      "summary_word_count": 91
+    },
+    {
+      "id": "report_04_renal_lab",
+      "filename": "fake_report_04_renal_lab.pdf",
+      "doc_type_expected": "lab",
+      "doc_type_predicted": "lab",
+      "classification_pass": true,
+      "extraction_precision": 0.8,
+      "extraction_recall": 1.0,
+      "extraction_f1": 0.8889,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 3673.71,
+      "summary_word_count": 187
+    },
+    {
+      "id": "report_05_hypertension_rx",
+      "filename": "fake_rx_05_hypertension.pdf",
+      "doc_type_expected": "prescription",
+      "doc_type_predicted": "prescription",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 18545.21,
+      "summary_word_count": 227
+    },
+    {
+      "id": "report_06_diabetes_rx",
+      "filename": "fake_rx_06_diabetes_cholesterol.pdf",
+      "doc_type_expected": "prescription",
+      "doc_type_predicted": "prescription",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 10163.85,
+      "summary_word_count": 228
+    },
+    {
+      "id": "report_07_postop_rx",
+      "filename": "fake_rx_07_postop_infection.pdf",
+      "doc_type_expected": "prescription",
+      "doc_type_predicted": "prescription",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 19644.11,
+      "summary_word_count": 231
+    },
+    {
+      "id": "report_08_respiratory_rx",
+      "filename": "fake_rx_08_respiratory_asthma.pdf",
+      "doc_type_expected": "prescription",
+      "doc_type_predicted": "prescription",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 20182.05,
+      "summary_word_count": 251
+    },
+    {
+      "id": "report_09_cardiac_discharge",
+      "filename": "fake_discharge_09_cardiac_acs.pdf",
+      "doc_type_expected": "discharge",
+      "doc_type_predicted": "discharge",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 13608.74,
+      "summary_word_count": 168
+    },
+    {
+      "id": "report_10_appendectomy_discharge",
+      "filename": "fake_discharge_10_appendectomy.pdf",
+      "doc_type_expected": "discharge",
+      "doc_type_predicted": "discharge",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 9112.56,
+      "summary_word_count": 161
+    },
+    {
+      "id": "report_11_pneumonia_discharge",
+      "filename": "fake_discharge_11_pneumonia.pdf",
+      "doc_type_expected": "discharge",
+      "doc_type_predicted": "discharge",
+      "classification_pass": true,
+      "extraction_precision": 1.0,
+      "extraction_recall": 1.0,
+      "extraction_f1": 1.0,
+      "exact_match_rate": 1.0,
+      "latency_total_ms": 16500.44,
+      "summary_word_count": 154
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "report_04_renal_lab",
+  "doc_type": "lab",
+  "verified": true,
+  "fields": [
+    {
+      "test_name": "Creatinine",
+      "canonical_test_name": "Creatinine",
+      "value": 2.3,
+      "unit": "mg/dL",
+      "reference_range": "0.5-1.1 mg/dL",
+      "flag": "High"
+    },
+    {
+      "test_name": "Sodium",
+      "canonical_test_name": "Sodium",
+      "value": 132.0,
+      "unit": "/uL",
+      "reference_range": "136-145 /uL",
+      "flag": "Low"
+    },
+    {
+      "test_name": "Potassium",
+      "canonical_test_name": "Potassium",
+      "value": 5.6,
+      "unit": "/uL",
+      "reference_range": "3.5-5.1 /uL",
+      "flag": "High"
+    },
+    {
+      "test_name": "Glucose",
+      "canonical_test_name": "Glucose",
+      "value": 104.0,
+      "unit": "mg/dL",
+      "reference_range": "70-100 mg/dL",
+      "flag": "High"
+    }
+  ],
+  "expected_flagged": [
+    "Creatinine",
+    "Sodium",
+    "Potassium",
+    "Glucose"
+  ]
+}

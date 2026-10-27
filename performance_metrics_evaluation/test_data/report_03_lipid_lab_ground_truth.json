@@ -1,0 +1,42 @@
+{
+  "id": "report_03_lipid_lab",
+  "doc_type": "lab",
+  "verified": true,
+  "fields": [
+    {
+      "test_name": "Hemoglobin",
+      "canonical_test_name": "Hemoglobin",
+      "value": 14.8,
+      "unit": "g/dL",
+      "reference_range": "13.0-17.0 g/dL",
+      "flag": "Normal"
+    },
+    {
+      "test_name": "Glucose",
+      "canonical_test_name": "Glucose",
+      "value": 110.0,
+      "unit": "mg/dL",
+      "reference_range": "70-99 mg/dL",
+      "flag": "High"
+    },
+    {
+      "test_name": "Platelet Count",
+      "canonical_test_name": "Platelet Count",
+      "value": 280.0,
+      "unit": "/uL",
+      "reference_range": "150-450 /uL",
+      "flag": "Normal"
+    },
+    {
+      "test_name": "White Blood Cell Count",
+      "canonical_test_name": "White Blood Cell Count",
+      "value": 7.2,
+      "unit": "/uL",
+      "reference_range": "4.0-10.5 /uL",
+      "flag": "Normal"
+    }
+  ],
+  "expected_flagged": [
+    "Glucose"
+  ]
+}
